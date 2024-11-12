@@ -586,10 +586,10 @@ class LoginForm:
         self._manager.grab_attention(sound=False)
         self._manager.print(_("gui", "login", "request"))
         await self.wait_for_login_press()
-        pyperclip.copy(user_code)
+        pyperclip.copy(user_code) # modified by Hitokage; copy login code automaticly
         self._manager.print(f"Enter this code on the Twitch's device activation page: {user_code}")
         await asyncio.sleep(4)
-        # webopen("https://www.twitch.tv/activate") # modified by Hitokage Closed the activate page
+        # webopen("https://www.twitch.tv/activate") # modified by Hitokage; close the activate page
 
     def update(self, status: str, user_id: int | None):
         if user_id is not None:
