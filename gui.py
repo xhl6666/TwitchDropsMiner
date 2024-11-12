@@ -6,6 +6,7 @@ import sys
 import ctypes
 import asyncio
 import logging
+import pyperclip
 import tkinter as tk
 from pathlib import Path
 from collections import abc
@@ -585,6 +586,7 @@ class LoginForm:
         self._manager.grab_attention(sound=False)
         self._manager.print(_("gui", "login", "request"))
         await self.wait_for_login_press()
+        pyperclip.copy(user_code)
         self._manager.print(f"Enter this code on the Twitch's device activation page: {user_code}")
         await asyncio.sleep(4)
         # webopen("https://www.twitch.tv/activate") # modified by Hitokage Closed the activate page

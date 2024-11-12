@@ -424,7 +424,7 @@ class Twitch:
     def __init__(self, settings: Settings):
         self.settings: Settings = settings
          
-        # modified by Hitokage 重写窗口标题
+        # modified by Hitokage; rename window title
         self.modified_window_title = f"slht{settings.num}"
         
         # State management
@@ -1450,7 +1450,7 @@ class Twitch:
         return self._merge_data(campaign_ids, fetched_data)
 
     async def fetch_inventory(self) -> None:
-        DROP_NAME_KEYWORD = ["Destiny 2", "Game2Give", "Developer", "Into the Drops", "Iron Man", "TFS", "Seventh Column Chaos", "Revenant", "Honkai"] # modified by Hitokage
+        DROP_NAME_KEYWORD = ["Destiny 2", "Game2Give", "Division"] # modified by Hitokage
         status_update = self.gui.status.update
         status_update(_("gui", "status", "fetching_inventory"))
         # fetch in-progress campaigns (inventory)
@@ -1522,7 +1522,7 @@ class Twitch:
             for campaign_data in inventory_data.values()
         ]
         
-        for campaign in campaigns.copy(): # modified by Hitokage 优化性能
+        for campaign in campaigns.copy(): # modified by Hitokage; optimize performance
             if not any(kwd in campaign.name for kwd in DROP_NAME_KEYWORD): campaigns.remove(campaign)
         
         campaigns.sort(key=lambda c: c.active, reverse=True)
